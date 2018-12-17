@@ -1,7 +1,7 @@
 var grid;
 function setup(){
   createCanvas(550,550);
-  createGrid(8,8);
+  generateBoard(8,8);
 }
 
 function draw(){
@@ -19,36 +19,39 @@ function draw(){
 
 function setColor(colorCode){
   switch(colorCode){
+    //Rood
     case 1:
       fill(229, 6, 6);
       break;
+    //Groen
     case 2:
       fill(113, 229, 5);
       break;
+    //Blauw
     case 3:
       fill(4, 143, 229);
       break;
+    //Geel
     case 4:
       fill(229, 221, 4);
       break;
+    //Paars
     case 5:
       fill(180, 4, 229);
       break;
+    //Oranje
     case 6:
       fill(255, 131, 0);
       break;
   }
 }
 
-
-
-function createGrid(xSize, ySize){
+function generateBoard(xSize, ySize){
   grid = new Array(ySize);
   for(var i = 0; i < grid.length; i++){
     grid[i] = new Array(xSize);
     for(var j = 0; j < grid[i].length; j++){
       grid[i][j] = Math.floor(Math.random() * 6) + 1;
     }
-
   }
 }

@@ -75,8 +75,8 @@ function generateBoard(xSize, ySize){
   }
 }
 
-function swap(x1, y1, x2, y2){
-if(isValidSwap(x1, x2, y1, y2)){
+function swap( Jewel1, Jewel2){
+if(isValidSwap(Jewel1, Jewel2)){
   backupJewel1 = Jewel1;
   backupJewel2 = Jewel2;
 
@@ -99,12 +99,8 @@ if(isValidSwap(x1, x2, y1, y2)){
 }
 }
 
-function undoSwap(){
-  swap(backupJewel1, backupJewel2);
-}
 
-
-function isValidSwap(x1, x2, y1, y2){
-  return Math.abs(x2 - x1) == 1 && Math.abs(y2 - y1) == 0
-  || Math.abs(x2 - x1) == 0 && Math.abs(y2 - y1) == 1
+function isValidSwap(Jewel1, Jewel2){
+  return Math.abs(Jewel2.x - Jewel1.x) == 1 && Math.abs(Jewel2.y - Jewel1.y) == 0
+  || Math.abs(Jewel2.x - Jewel1.x) == 0 && Math.abs(Jewel2.y - Jewel1.y) == 1
 }

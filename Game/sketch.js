@@ -66,9 +66,10 @@ function generateBoard(xSize, ySize){
   }
 }
 
-function swap(Jewel1, Jewel2){
-  backupJewel1 = Jewel1;
-  backupJewel2 = Jewel2;
+function swap(x1, x2, y1, y2){
+if(isValidSwap(x1, x2, y1, y2)){
+  backupJewel1 = Jewel;
+  backupJewel2 = Jewe2;
 
   xCoord1 = Jewel1.x;
   yCoord1 = Jewel1.y;
@@ -84,9 +85,17 @@ function swap(Jewel1, Jewel2){
   //swap jewels in grid
   grid[xCoord1][yCoord1] = Jewel2;
   grid[xCoord2][yCoord2] = Jewel1;
-
+}else{
+  console.log("invalid swap, try again bitch !"");
+}
 }
 
 function undoSwap(){
   swap(backupJewel1, backupJewel2);
+}
+
+
+function isValidSwap(x1, x2, y1, y2){
+  return Math.abs(x2 - x1) == 1 && Math.abs(y2 - y1) == 0
+  || Math.abs(x2 - x1) == 0 && Math.abs(y2 - y1) == 1
 }

@@ -8,6 +8,7 @@ class Jewel{
     var distance = dist(xPos, yPos, 50+60*this.x, 50+60*this.y);
     if(distance <= 25){
       console.log("clicked jewel: " + this.x + " " + this.y);
+      return true;
     }
   }
 
@@ -41,6 +42,7 @@ class Jewel{
   }
 
   show(){
+    noStroke();
     this.setColor();
     ellipse(50+60*this.x, 50+60*this.y, 50, 50);
   }

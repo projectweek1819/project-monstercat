@@ -5,7 +5,7 @@ class Jewel{
     this.color = colorCode
   }
   select(){
-
+    //// TODO: implement this function
   }
 
   setColor(){

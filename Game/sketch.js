@@ -5,10 +5,12 @@ var selectedX1;
 var selectedY1;
 var selectedX2;
 var selectedY2;
+var clickCount;
 
 function setup(){
   createCanvas(550,550);
   generateBoard(8,8);
+  clickCount = 0;
 }
 
 function draw(){
@@ -27,9 +29,16 @@ function drawSelection(){
 function mousePressed(){
   for(var i = 0; i < 8; i++){
     for(var j = 0; j < 8; j++){
-      if(grid[i][j].selected(mouseX, mouseY)){
+      var flag = grid[i][j].selected(mouseX, mouseY);
+      if((flag) && (clickCount == 0)){
+        clickCount++;
         selectedX1 = i;
         selectedY1 = j;
+      }else if((flag) && (clickCount == 1)){
+        clickCount = 0;
+        selectedX2 = i;
+        selectedY2 = j;
+        swap(selectedX1, selectedY1, selectedX2, selectedY2);
       }
     }
   }
@@ -66,10 +75,10 @@ function generateBoard(xSize, ySize){
   }
 }
 
-function swap(x1, x2, y1, y2){
+function swap(x1, y1, x2, y2){
 if(isValidSwap(x1, x2, y1, y2)){
-  backupJewel1 = Jewel;
-  backupJewel2 = Jewe2;
+  backupJewel1 = Jewel1;
+  backupJewel2 = Jewel2;
 
   xCoord1 = Jewel1.x;
   yCoord1 = Jewel1.y;
@@ -86,7 +95,7 @@ if(isValidSwap(x1, x2, y1, y2)){
   grid[xCoord1][yCoord1] = Jewel2;
   grid[xCoord2][yCoord2] = Jewel1;
 }else{
-  console.log("invalid swap, try again bitch !"");
+  console.log("invalid swap, try again bitch !");
 }
 }
 

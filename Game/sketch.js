@@ -14,7 +14,11 @@ function draw(){
 }
 
 function mousePressed(){
-  //// TODO:
+  for(var i = 0; i < 8; i++){
+    for(var j = 0; j < 8; j++){
+      grid[i][j].selected(mouseX, mouseY);
+    }
+  }
 }
 
 function showGrid(){

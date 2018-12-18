@@ -4,8 +4,11 @@ class Jewel{
     this.y = yCoord;
     this.color = colorCode
   }
-  select(){
-    //// TODO: implement this function
+  selected(xPos,yPos){
+    var distance = dist(xPos, yPos, 50+60*this.x, 50+60*this.y);
+    if(distance <= 25){
+      console.log("clicked jewel: " + this.x + " " + this.y);
+    }
   }
 
   setColor(){

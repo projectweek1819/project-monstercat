@@ -1,8 +1,10 @@
 var grid;
 var backupJewel1;
 var backupJewel2;
-var selectedX;
-var selectedY;
+var selectedX1;
+var selectedY1;
+var selectedX2;
+var selectedY2;
 
 function setup(){
   createCanvas(550,550);
@@ -18,16 +20,16 @@ function draw(){
 function drawSelection(){
   noFill();
   stroke(0,0,0);
-  strokeWeight(3);
-  rect(20+60*selectedX, 20+60*selectedY,60, 60);
+  strokeWeight(2);
+  rect(20+60*selectedX1, 20+60*selectedY1,60, 60);
 }
 
 function mousePressed(){
   for(var i = 0; i < 8; i++){
     for(var j = 0; j < 8; j++){
       if(grid[i][j].selected(mouseX, mouseY)){
-        selectedX = i;
-        selectedY = j;
+        selectedX1 = i;
+        selectedY1 = j;
       }
     }
   }

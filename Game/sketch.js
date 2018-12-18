@@ -38,7 +38,11 @@ function mousePressed(){
         clickCount = 0;
         selectedX2 = i;
         selectedY2 = j;
-        swap(selectedX1, selectedY1, selectedX2, selectedY2);
+        swap(grid[selectedX1][selectedY1], grid[selectedX2][selectedY2]);
+        selectedX1 = null;
+        selecterY1 = null;
+        selectedX2 = null;
+        selectedY2 = null;
       }
     }
   }
@@ -94,9 +98,9 @@ if(isValidSwap(Jewel1, Jewel2)){
   //swap jewels in grid
   grid[xCoord1][yCoord1] = Jewel2;
   grid[xCoord2][yCoord2] = Jewel1;
-}else{
-  console.log("invalid swap, try again bitch !");
-}
+  }else{
+    console.log("invalid swap, try again bitch !");
+  }
 }
 
 

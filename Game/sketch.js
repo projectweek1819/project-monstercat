@@ -6,6 +6,8 @@ var selectedJewel2 = null;
 var clickCount;
 var score;
 
+var verticalStack = new Array();
+var horizontalStack = new Array();
 
 function setup(){
   createCanvas(550,550);
@@ -160,6 +162,8 @@ if(isValidSwap(Jewel1, Jewel2)){
   grid[xCoord2][yCoord2] = Jewel1;
   fixJewelCoord();
   showGrid();
+  console.log(treestackVertical(Jewel1));
+  console.log(treestackHorizontal(Jewel1));
   }else{
     console.log("invalid swap, try again bitch !");
   }
@@ -180,56 +184,58 @@ function isValidSwap(Jewel1, Jewel2){
 }
 
 function treestackVertical(Jewel1){
+  verticalStack = new Array();
 
-  var verticalStack = new Array;
   verticalStack.push(Jewel1);
 
   //boven
-  for(var i = Jewel1.y; i>=0; i--){
-    if(Jewel1.color == grid[Jewel1.x][i]){
-      verticalStack.push(boven);
+  for(var i = Jewel1.y-1; i>=0; i--){
+    if(Jewel1.color == grid[Jewel1.x][i].color){
+      verticalStack.push(grid[Jewel1.x][i]);
     }else{
       break;
     }
   }
 //onder
-  for(var i = Jewel1.y; i<=7; i++){
-    if(Jewel1.color == grid[Jewel1.x][i]){
-      verticalStack.push(onder);
+  for(var i = Jewel1.y+1; i<=7; i++){
+    if(Jewel1.color == grid[Jewel1.x][i].color){
+      verticalStack.push(grid[Jewel1.x][i]);
     }else{
       break;
     }
   }
 
-  if(verticalStack.length > 2){
-    return "Bingo!";
+  if(verticalStack.length >= 3){
+    return "Bingo vertical!";
 
   }else{
-    return "No Bingo!";
+    return "No Bingo vertical!";
 
   }
 }
 function treestackHorizontal(Jewel1){
+  horizontalStack = new Array();
+
 horizontalStack.push(Jewel1);
 
 //links
-for(var i = Jewel1.x; i>=0; i--){
-  if(Jewel1.color == grid[i][Jewel1.y]){
-    horizontalStack.push(links);
+for(var i = Jewel1.x-1; i>=0; i--){
+  if(Jewel1.color == grid[i][Jewel1.y].color){
+    horizontalStack.push(grid[i][Jewel1.y]);
   }else{
     break;
   }
 }
-for(var i = Jewel1.x; i>=0; i++){
-  if(Jewel1.color == grid[i][Jewel1.y]){
-    horizontalStack.push(Jewel1);
+for(var i = Jewel1.x+1; i>=0; i++){
+  if(Jewel1.color == grid[i][Jewel1.y].color){
+    horizontalStack.push(grid[i][Jewel1.y]);
   }else{
     break;
   }
 }
-  if(horizontalStack.length > 2){
-    return "Bingo!";
+  if(horizontalStack.length >= 3){
+    return "Bingo horizontal!";
   }else{
-    return "No Bingo!"
+    return "No Bingo horizontal!"
   }
 }

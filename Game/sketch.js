@@ -60,13 +60,13 @@ function showGrid(){
 
 function removeJewel(x,y){
   grid[x][y] = null;
-  collapse();
+  setTimeout(collapse, 500);
 }
 
 function removeJewels(jewelChain){
   for(var i = 0; i < jewelChain.length; i++){
     grid[jewelChain[i].x][jewelChain[i].y] = null;
-    collapse();
+    setTimeout(collapse, 500);
   }
 }
 
@@ -96,7 +96,7 @@ function collapse(){
     }
   }
 
-  dropJewels();
+  setTimeout(dropJewels, 500);
 }
 
 function dropJewels(){

@@ -60,13 +60,13 @@ function showGrid(){
 
 function removeJewel(x,y){
   grid[x][y] = null;
-  setTimeout(collapse, 500);
+  collapse();
 }
 
 function removeJewels(jewelChain){
   for(var i = 0; i < jewelChain.length; i++){
     grid[jewelChain[i].x][jewelChain[i].y] = null;
-    setTimeout(collapse, 500);
+    collapse();
   }
 }
 
@@ -96,7 +96,7 @@ function collapse(){
     }
   }
 
-  setTimeout(dropJewels, 500);
+  dropJewels();
 }
 
 function dropJewels(){
@@ -164,8 +164,6 @@ if(isValidSwap(Jewel1, Jewel2)){
     console.log("invalid swap, try again bitch !");
   }
 }
-<<<<<<< HEAD
-=======
 
 function undoSwap(){
   if((backupJewel1 == null) || (backupJewel2 == null)){
@@ -176,8 +174,65 @@ function undoSwap(){
 }
 
 
-function isValidSwap(Jewel1, Jewel2){
-  return Math.abs(Jewel2.x - Jewel1.x) == 1 && Math.abs(Jewel2.y - Jewel1.y) == 0
-  || Math.abs(Jewel2.x - Jewel1.x) == 0 && Math.abs(Jewel2.y - Jewel1.y) == 1
+function isValidSwapVertical(Jewel1, Jewel2){
+  return  Math.abs(Jewel2.x - Jewel1.x) == 0 && Math.abs(Jewel2.y - Jewel1.y) == 1;
 }
->>>>>>> 17251c81d8c72d8f1a6b27b378bc9051960c3248
+
+function isValidSwapHorizontal(Jewel1, Jewel2){
+  return Math.abs(Jewel2.x - Jewel1.x) == 1 && Math.abs(Jewel2.y - Jewel1.y) == 0;
+}
+
+function treestackVertical(Jewel1){
+
+  var verticalStack = new Array;
+  verticalStack.push(Jewel1);
+
+  //boven
+  for(var i = Jewel1.y; i>=0; i--){
+    if(Jewel1.color == grid[Jewel1.x][i]){
+      verticalStack.push(boven);
+    }else{
+      break;
+    }
+  }
+//onder
+  for(var i = Jewel1.y; i<=7; i++){
+    if(Jewel1.color == grid[Jewel1.x][i]){
+      verticalStack.push(onder);
+    }else{
+      break;
+    }
+  }
+
+  if(verticalStack.length > 2){
+    return "Bingo!";
+
+  }else{
+    return "No Bingo!";
+
+  }
+}
+function treestackHorizontal(Jewel1){
+horizontalStack.push(Jewel1);
+
+//links
+for(var i = Jewel1.x; i>=0; i--){
+  if(Jewel1.color == grid[i][Jewel1.y]){
+    horizontalStack.push(links);
+  }else{
+    break;
+  }
+}
+for(var i = Jewel1.x; i>=0; i++){
+  if(Jewel1.color == grid[i][Jewel1.y]){
+    horizontalStack.push(Jewel1);
+  }else{
+    break;
+  }
+}
+  if(horizontalStack.length > 2){
+    return "Bingo!";
+  }else{
+    return "No Bingo!"
+  }
+}

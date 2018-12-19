@@ -4,11 +4,14 @@ var backupJewel2;
 var selectedJewel1 = null;
 var selectedJewel2 = null;
 var clickCount;
+var score;
+
 
 function setup(){
   createCanvas(550,550);
   generateBoard(8,8);
   clickCount = 0;
+  score = 0;
 }
 
 function draw(){
@@ -18,6 +21,7 @@ function draw(){
     drawSelection();
   }
 }
+
 
 function drawSelection(){
   noFill();
@@ -47,12 +51,56 @@ function mousePressed(){
 function showGrid(){
   for(var i = 0; i < grid.length; i++){
     for(var j = 0; j < grid[i].length; j++){
-      grid[i][j].show();
+      if(grid[i][j] != null){
+        grid[i][j].show();
+      }
     }
   }
 }
 
-//// TODO: controle dat de vorige jewels niet hetzelfde zijn
+function removeJewel(x,y){
+  grid[x][y] = null;
+  collapse();
+}
+
+function removeJewels(jewelChain){
+  for(var i = 0; i < jewelChain.length; i++){
+    grid[jewelChain[i].x][jewelChain[i].y] = null;
+    collapse();
+  }
+}
+
+function collapse(){
+
+  //search column
+  for(var i = 0; i < 8; i++){
+
+    //search row, bottom up!!!!
+    for(var j = 7; j >= 0; j--){
+      if(grid[i][j] == null){
+
+        //look for first not null object
+        for(var k = j-1; k >=0; k--){
+          if(grid[i][k] != null){
+
+            var temp = grid[i][j];
+            grid[i][j] = grid[i][k];
+            grid[i][k] = temp;
+
+            fixJewelCoord()
+
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
 function generateBoard(xSize, ySize){
   grid = new Array(ySize);
   for(var i = 0; i < grid.length; i++){
@@ -78,10 +126,16 @@ function generateBoard(xSize, ySize){
 function fixJewelCoord(){
   for(var i = 0; i < 8; i++){
     for(var j = 0; j < 8; j++){
-      grid[i][j].x = i;
-      grid[i][j].y = j;
+      if(grid[i][j] != null){
+        grid[i][j].x = i;
+        grid[i][j].y = j;
+      }
     }
   }
+}
+
+function swapWithoutCheck(){
+
 }
 
 function swap( Jewel1, Jewel2){
@@ -102,6 +156,14 @@ if(isValidSwap(Jewel1, Jewel2)){
   }else{
     console.log("invalid swap, try again bitch !");
   }
+}
+
+function undoSwap(){
+  if((backupJewel1 == null) || (backupJewel2 == null)){
+    console.log("There is no backupswap");
+  }
+
+  swap(backupJewel1, backupJewel2);
 }
 
 

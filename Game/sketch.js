@@ -1,10 +1,8 @@
 var grid;
 var backupJewel1;
 var backupJewel2;
-var selectedX1;
-var selectedY1;
-var selectedX2;
-var selectedY2;
+var selectedJewel1 = null;
+var selectedJewel2 = null;
 var clickCount;
 
 function setup(){
@@ -16,14 +14,16 @@ function setup(){
 function draw(){
   background(220);
   showGrid();
-  drawSelection()
+  if(selectedJewel1 != null){
+    drawSelection();
+  }
 }
 
 function drawSelection(){
   noFill();
   stroke(0,0,0);
   strokeWeight(2);
-  rect(20+60*selectedX1, 20+60*selectedY1,60, 60);
+  rect(20+60*selectedJewel1.x, 20+60*selectedJewel1.y,60, 60);
 }
 
 function mousePressed(){
@@ -32,17 +32,13 @@ function mousePressed(){
       var flag = grid[i][j].selected(mouseX, mouseY);
       if((flag) && (clickCount == 0)){
         clickCount++;
-        selectedX1 = i;
-        selectedY1 = j;
+        selectedJewel1 = grid[i][j];
       }else if((flag) && (clickCount == 1)){
         clickCount = 0;
-        selectedX2 = i;
-        selectedY2 = j;
-        swap(grid[selectedX1][selectedY1], grid[selectedX2][selectedY2]);
-        selectedX1 = null;
-        selecterY1 = null;
-        selectedX2 = null;
-        selectedY2 = null;
+        selectedJewel2 = grid[i][j];
+        swap(grid[selectedJewel1.x][selectedJewel1.y], grid[selectedJewel2.x][selectedJewel2.y]);
+        selectedJewel1 = null;
+        selectedJewel2 = null;
       }
     }
   }

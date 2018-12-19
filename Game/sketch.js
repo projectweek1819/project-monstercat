@@ -95,10 +95,20 @@ function collapse(){
       }
     }
   }
+
+  dropJewels();
 }
 
+function dropJewels(){
+  for(var i = 0; i<8; i++){
+    for(var j = 0; j<8; j++){
+      if(grid[i][j] == null){
+        grid[i][j] = new Jewel(i, j, Math.floor(Math.random() * 6) + 1);
 
-
+      }
+    }
+  }
+}
 
 
 function generateBoard(xSize, ySize){
@@ -134,9 +144,6 @@ function fixJewelCoord(){
   }
 }
 
-function swapWithoutCheck(){
-
-}
 
 function swap( Jewel1, Jewel2){
 if(isValidSwap(Jewel1, Jewel2)){

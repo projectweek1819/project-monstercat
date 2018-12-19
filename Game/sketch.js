@@ -68,7 +68,7 @@ function removeJewel(x,y){
 function removeJewels(jewelChain){
   for(var i = 0; i < jewelChain.length; i++){
     grid[jewelChain[i].x][jewelChain[i].y] = null;
-    collapse();
+    setInterval(collapse, 500);
   }
 }
 
@@ -98,7 +98,7 @@ function collapse(){
     }
   }
 
-  dropJewels();
+  setInterval(dropJewels,500);
 }
 
 function dropJewels(){
@@ -162,9 +162,14 @@ if(isValidSwap(Jewel1, Jewel2)){
   grid[xCoord2][yCoord2] = Jewel1;
   fixJewelCoord();
   showGrid();
-  console.log(treestackVertical(Jewel1));
-  console.log(treestackHorizontal(Jewel1));
-  }else{
+
+  if(treestackVertical(Jewel1)){
+    removeJewels(verticalStack);
+  }else if(treestackHorizontal(Jewel1)){
+    removeJewels(horizontalStack);
+  }
+
+}else{
     console.log("invalid swap, try again bitch !");
   }
 }
@@ -206,36 +211,40 @@ function treestackVertical(Jewel1){
   }
 
   if(verticalStack.length >= 3){
-    return "Bingo vertical!";
+    console.log("Bingo vertical!");
+    return true;
 
   }else{
-    return "No Bingo vertical!";
-
+    console.log("No Bingo vertical!");
+    return false;
   }
 }
+
 function treestackHorizontal(Jewel1){
   horizontalStack = new Array();
 
-horizontalStack.push(Jewel1);
+  horizontalStack.push(Jewel1);
 
 //links
-for(var i = Jewel1.x-1; i>=0; i--){
-  if(Jewel1.color == grid[i][Jewel1.y].color){
-    horizontalStack.push(grid[i][Jewel1.y]);
-  }else{
-    break;
+  for(var i = Jewel1.x-1; i>=0; i--){
+    if(Jewel1.color == grid[i][Jewel1.y].color){
+      horizontalStack.push(grid[i][Jewel1.y]);
+    }else{
+      break;
+    }
   }
-}
-for(var i = Jewel1.x+1; i>=0; i++){
-  if(Jewel1.color == grid[i][Jewel1.y].color){
-    horizontalStack.push(grid[i][Jewel1.y]);
-  }else{
-    break;
+  for(var i = Jewel1.x+1; i>=0; i++){
+    if(Jewel1.color == grid[i][Jewel1.y].color){
+      horizontalStack.push(grid[i][Jewel1.y]);
+    }else{
+      break;
+    }
   }
-}
-  if(horizontalStack.length >= 3){
-    return "Bingo horizontal!";
-  }else{
-    return "No Bingo horizontal!"
-  }
+    if(horizontalStack.length >= 3){
+      console.log("Bingo horizontal!");
+      return true;
+    }else{
+      console.log("No Bingo horizontal!");
+      return false;
+    }
 }

@@ -163,11 +163,17 @@ if(isValidSwap(Jewel1, Jewel2)){
   fixJewelCoord();
   showGrid();
 
-  if(treestackVertical(Jewel1)){
-    removeJewels(verticalStack);
-  }else if(treestackHorizontal(Jewel1)){
-    removeJewels(horizontalStack);
-  }else{
+  var flag1 = treestackVertical(Jewel1);
+  var flag2 = treestackHorizontal(Jewel1);
+
+
+  if(flag1){
+    setInterval(removeJewels(verticalStack), 500);
+
+  }else if(flag2){
+    setInterval(removeJewels(horizontalStack), 500);
+
+  }else if((flag1 == false) && (flag2 == false)){
     setInterval(undoSwap, 500);
   }
 

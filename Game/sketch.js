@@ -167,6 +167,8 @@ if(isValidSwap(Jewel1, Jewel2)){
     removeJewels(verticalStack);
   }else if(treestackHorizontal(Jewel1)){
     removeJewels(horizontalStack);
+  }else{
+    setInterval(undoSwap, 500);
   }
 
 }else{
@@ -179,7 +181,21 @@ function undoSwap(){
     console.log("There is no backupswap");
   }
 
-  swap(backupJewel1, backupJewel2);
+  xCoord1 = backupJewel1.x;
+  yCoord1 = backupJewel1.y;
+  xCoord2 = backupJewel2.x;
+  yCoord2 = backupJewel2.y;
+
+  //swap jewels in grid
+  grid[xCoord1][yCoord1] = backupJewel2;
+  grid[xCoord2][yCoord2] = backupJewel1;
+
+  backupJewel1 = null;
+  backupJewel2 = null;
+
+  fixJewelCoord();
+  showGrid();
+
 }
 
 

@@ -98,9 +98,3 @@ if(isValidSwap(Jewel1, Jewel2)){
     console.log("invalid swap, try again bitch !");
   }
 }
-
-
-function isValidSwap(Jewel1, Jewel2){
-  return Math.abs(Jewel2.x - Jewel1.x) == 1 && Math.abs(Jewel2.y - Jewel1.y) == 0
-  || Math.abs(Jewel2.x - Jewel1.x) == 0 && Math.abs(Jewel2.y - Jewel1.y) == 1
-}

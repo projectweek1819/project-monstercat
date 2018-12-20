@@ -284,3 +284,19 @@ function treestackHorizontal(Jewel1){
       return false;
     }
 }
+
+function fullVerticalChecker(){
+for ( let i = 0; i <= 7; i++){
+  for (let j = 0; j<=5; j++){
+    treestackVertical(grid[i],[j]);
+    }
+  }
+}
+
+function fullHorizontalChecker(){
+  for ( let i = 0; i <= 5; i++){
+    for (let j =0; j <=7; j++){
+      treestackHorizontal(grid[i],[j]);
+    }
+  }
+}

@@ -40,7 +40,7 @@ class Jewel{
         break;
     }
   }
-  
+
 
   show(){
     noStroke();

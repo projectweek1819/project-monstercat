@@ -23,14 +23,14 @@ function preload(){
 }
 
 function setup(){
-  createCanvas(550,550);
+  createCanvas(750,550);
   generateBoard(8,8);
   clickCount = 0;
   score = 0;
 }
 
 function draw(){
-  background(255,255,255);
+  background(245);
   showGrid();
   if(selectedJewel1 != null){
     drawSelection();
@@ -187,7 +187,7 @@ if(isValidSwap(Jewel1, Jewel2)){
     setInterval(removeJewels(horizontalStack), 500);
 
   }else if((flag1 == false) && (flag2 == false)){
-    setInterval(undoSwap, 500);
+    undoSwap();
   }
 
 }else{

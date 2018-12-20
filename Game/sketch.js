@@ -81,7 +81,7 @@ function removeJewel(x,y){
 function removeJewels(jewelChain){
   for(var i = 0; i < jewelChain.length; i++){
     grid[jewelChain[i].x][jewelChain[i].y] = null;
-    setInterval(collapse, 500);
+    collapse();
   }
 }
 
@@ -111,7 +111,7 @@ function collapse(){
     }
   }
 
-  setInterval(dropJewels,500);
+  dropJewels();
 }
 
 function dropJewels(){
@@ -181,10 +181,10 @@ if(isValidSwap(Jewel1, Jewel2)){
 
 
   if(flag1){
-    setInterval(removeJewels(verticalStack), 500);
+    removeJewels(verticalStack);
 
   }else if(flag2){
-    setInterval(removeJewels(horizontalStack), 500);
+    removeJewels(horizontalStack);
 
   }else if((flag1 == false) && (flag2 == false)){
     undoSwap();

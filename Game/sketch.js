@@ -5,22 +5,9 @@ var selectedJewel1 = null;
 var selectedJewel2 = null;
 var clickCount;
 var score;
-var imgArray = new Array();
 
 var verticalStack = new Array();
 var horizontalStack = new Array();
-
-function preload(){
-
-    imgArray.push(loadImage('img/1.png'));
-    imgArray.push(loadImage('img/2.png'));
-    imgArray.push(loadImage('img/3.png'));
-    imgArray.push(loadImage('img/4.png'));
-    imgArray.push(loadImage('img/5.png'));
-    imgArray.push(loadImage('img/6.png'));
-
-
-}
 
 function setup(){
   createCanvas(550,550);
@@ -30,7 +17,7 @@ function setup(){
 }
 
 function draw(){
-  background(255,255,255);
+  background(220);
   showGrid();
   if(selectedJewel1 != null){
     drawSelection();
@@ -283,4 +270,20 @@ function treestackHorizontal(Jewel1){
       console.log("No Bingo horizontal!");
       return false;
     }
+}
+
+function fullVerticalChecker(){
+for ( let i = 0; i <= 7; i++){
+  for (let j = 0; j<=5; j++){
+    treestackVertical(grid[i],[j]);
+    }
+  }
+}
+
+function fullHorizontalChecker(){
+  for ( let i = 0; i <= 5; i++){
+    for (let j =0; j <=7; j++){
+      treestackHorizontal(grid[i],[j]);
+    }
+  }
 }

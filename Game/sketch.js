@@ -79,6 +79,12 @@ function removeJewel(x,y){
 }
 
 function removeJewels(jewelChain){
+  if(jewelChain.length == 3){
+    score += 100;
+  }else if(jewelChain.length == 4){
+    score += 250;
+  }
+
   for(var i = 0; i < jewelChain.length; i++){
     grid[jewelChain[i].x][jewelChain[i].y] = null;
     collapse();

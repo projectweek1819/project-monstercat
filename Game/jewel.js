@@ -43,8 +43,34 @@ class Jewel{
 
 
   show(){
-    noStroke();
-    this.setColor();
-    ellipse(50+60*this.x, 50+60*this.y, 50, 50);
+    switch(this.color){
+      //Rood
+      case 1:
+        image(imgArray[0], 25+60*this.x, 25+60*this.y, 50, 50);
+        break;
+      //Groen
+      case 2:
+        image(imgArray[1], 25+60*this.x, 25+60*this.y, 50, 50);
+        break;
+      //Blauw
+      case 3:
+        image(imgArray[2], 25+60*this.x, 25+60*this.y, 50, 50);
+        break;
+      //Geel
+      case 4:
+        image(imgArray[3], 25+60*this.x, 25+60*this.y, 50, 50);
+        break;
+      //Paars
+      case 5:
+        image(imgArray[4], 25+60*this.x, 25+60*this.y, 50, 50);
+        break;
+      //Oranje
+      case 6:
+        image(imgArray[5], 25+60*this.x, 25+60*this.y, 50, 50);
+        break;
+    }
+    //noStroke();
+    //this.setColor();
+    //ellipse(50+60*this.x, 50+60*this.y, 50, 50);
   }
 }

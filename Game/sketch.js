@@ -256,12 +256,12 @@ function treestackHorizontal(Jewel1){
     }
   }
   //rechts
-    for(var i = Jewel1.x+1; i<7; i++){
-      if(Jewel1.color == grid[i][Jewel1.y].color){
-        horizontalStack.push(grid[i][Jewel1.y]);
-      }else{
-        break;
-      }
+  for(var i = Jewel1.x+1; i<=7; i++){
+    if(Jewel1.color == grid[i][Jewel1.y].color){
+      horizontalStack.push(grid[i][Jewel1.y]);
+    }else{
+      break;
+    }
   }
     if(horizontalStack.length >= 3){
       console.log("Bingo horizontal!");

@@ -6,8 +6,6 @@ var selectedJewel2 = null;
 var clickCount;
 var score;
 
-var verticalStack = new Array();
-var horizontalStack = new Array();
 
 function setup(){
   createCanvas(550,550);
@@ -68,7 +66,7 @@ function removeJewel(x,y){
 function removeJewels(jewelChain){
   for(var i = 0; i < jewelChain.length; i++){
     grid[jewelChain[i].x][jewelChain[i].y] = null;
-    setInterval(collapse, 500);
+    collapse();
   }
 }
 
@@ -98,7 +96,7 @@ function collapse(){
     }
   }
 
-  setInterval(dropJewels,500);
+  dropJewels();
 }
 
 function dropJewels(){
@@ -162,14 +160,7 @@ if(isValidSwap(Jewel1, Jewel2)){
   grid[xCoord2][yCoord2] = Jewel1;
   fixJewelCoord();
   showGrid();
-
-  if(treestackVertical(Jewel1)){
-    removeJewels(verticalStack);
-  }else if(treestackHorizontal(Jewel1)){
-    removeJewels(horizontalStack);
-  }
-
-}else{
+  }else{
     console.log("invalid swap, try again bitch !");
   }
 }
@@ -189,62 +180,56 @@ function isValidSwap(Jewel1, Jewel2){
 }
 
 function treestackVertical(Jewel1){
-  verticalStack = new Array();
 
+  var verticalStack = new Array;
   verticalStack.push(Jewel1);
 
   //boven
-  for(var i = Jewel1.y-1; i>=0; i--){
-    if(Jewel1.color == grid[Jewel1.x][i].color){
-      verticalStack.push(grid[Jewel1.x][i]);
+  for(var i = Jewel1.y; i>=0; i--){
+    if(Jewel1.color == grid[Jewel1.x][i]){
+      verticalStack.push(boven);
     }else{
       break;
     }
   }
 //onder
-  for(var i = Jewel1.y+1; i<=7; i++){
-    if(Jewel1.color == grid[Jewel1.x][i].color){
-      verticalStack.push(grid[Jewel1.x][i]);
+  for(var i = Jewel1.y; i<=7; i++){
+    if(Jewel1.color == grid[Jewel1.x][i]){
+      verticalStack.push(onder);
     }else{
-      break;
+        break;
     }
   }
 
-  if(verticalStack.length >= 3){
-    console.log("Bingo vertical!");
-    return true;
+  if(verticalStack.length > 2){
+    return "Bingo!";
 
   }else{
-    console.log("No Bingo vertical!");
-    return false;
+    return "No Bingo!";
+
   }
 }
-
 function treestackHorizontal(Jewel1){
-  horizontalStack = new Array();
-
-  horizontalStack.push(Jewel1);
+horizontalStack.push(Jewel1);
 
 //links
-  for(var i = Jewel1.x-1; i>=0; i--){
-    if(Jewel1.color == grid[i][Jewel1.y].color){
-      horizontalStack.push(grid[i][Jewel1.y]);
-    }else{
-      break;
-    }
+for(var i = Jewel1.x; i>=0; i--){
+  if(Jewel1.color == grid[i][Jewel1.y]){
+    horizontalStack.push(links);
+  }else{
+    break;
   }
-  for(var i = Jewel1.x+1; i>=0; i++){
-    if(Jewel1.color == grid[i][Jewel1.y].color){
-      horizontalStack.push(grid[i][Jewel1.y]);
-    }else{
-      break;
-    }
+}
+for(var i = Jewel1.x; i>=0; i++){
+  if(Jewel1.color == grid[i][Jewel1.y]){
+    horizontalStack.push(Jewel1);
+  }else{
+    break;
   }
-    if(horizontalStack.length >= 3){
-      console.log("Bingo horizontal!");
-      return true;
-    }else{
-      console.log("No Bingo horizontal!");
-      return false;
-    }
+}
+  if(horizontalStack.length > 2){
+    return "Bingo!";
+  }else{
+    return "No Bingo!"
+  }
 }

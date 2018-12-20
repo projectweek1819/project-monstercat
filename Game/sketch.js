@@ -255,6 +255,7 @@ function treestackHorizontal(Jewel1){
       break;
     }
   }
+  //rechts
   for(var i = Jewel1.x+1; i>=0; i++){
     if(Jewel1.color == grid[i][Jewel1.y].color){
       horizontalStack.push(grid[i][Jewel1.y]);
